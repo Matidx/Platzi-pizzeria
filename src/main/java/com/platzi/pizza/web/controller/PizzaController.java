@@ -30,8 +30,11 @@ public class PizzaController {
         return ResponseEntity.ok(this.pizzaService.getPizzaById(idPizza));
     }
     @GetMapping("/available")
-    public ResponseEntity<List<PizzaEntity>> getAvailable() {
-        return ResponseEntity.ok(this.pizzaService.getAvailable());
+    public ResponseEntity<Page<PizzaEntity>> getAvailable(@RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "8") int elements,
+                                                          @RequestParam(defaultValue = "price") String sortBy,
+                                                          @RequestParam(defaultValue = "ASC") String sortDirection) {
+        return ResponseEntity.ok(this.pizzaService.getAvailable(page, elements, sortBy, sortDirection));
     }
 
     @GetMapping("/name/{name}")
