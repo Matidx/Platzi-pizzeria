@@ -42,5 +42,6 @@ public class OrderEntity {
     private CustomerEntity customer;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER) //EAGER: carga la informacion cuando se ejecuta el llamado a la funcion del controller
+    @OrderBy("price ASC")
     private List<OrderItemEntity> items;
 }
